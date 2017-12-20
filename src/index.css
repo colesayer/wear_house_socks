@@ -15,9 +15,19 @@ body {
 
 #CanvasContainer{
   background-color: white;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   display: block;
   float: left;
   position: relative;
+}
+
+#SockSideBar{
+  width: 20%;
+  height: 100vh;
+  display: block;
+  float: left;
+  position: relative;
+  border: 1px solid black;
+  box-sizing: border-box;
 }

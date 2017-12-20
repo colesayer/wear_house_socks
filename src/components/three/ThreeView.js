@@ -34,20 +34,41 @@ class ThreeView extends Component{
     this.canvas.appendChild(this.renderer.domElement);
 
     //CAMERA
-    this.camera = new THREE.PerspectiveCamera(10, window.innerWidth / window.innerHeight, 1, 100000);
-    this.camera.position.set(-10, 1, 100)
+    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+    this.camera.position.y = 0;
+		this.camera.position.z = 7;
+//     this.camera.rotation.set()
+//
+//     x
+// :
+// 21.455970434670267
+// y
+// :
+// 4.544360039222428
+// z
+// :
+// 17.337598726109064
+//
+// _x
+// :
+// -0.2564316444102559
+// _y
+// :
+// 0.8749358252957242
+// _z
+// :
+// 0.1985898867613025
 
     //CONTROLS
     this.controls = new TrackballControls(this.camera, this.canvas);
-    // this.controls.target.set(-4, 5, 10)
-    // this.controls.update()
-    this.controls.rotateSpeed = .9;
+    // this.controls.target.set(0, 0, 0)
+    this.controls.rotateSpeed = 1;
     this.controls.zoomSpeed = .7;
     this.controls.panSpeed = .25;
     this.controls.noZoom = false;
     this.controls.noPan = false;
     this.controls.staticMoving = false;
-    this.controls.dynamicDampingFactor = 0.3;
+    this.controls.dynamicDampingFactor = 0.1;
 
     //SCENE
     this.scene = new THREE.Scene();
@@ -58,8 +79,14 @@ class ThreeView extends Component{
 
     //POINTLIGHT
     this.pointLight = new THREE.PointLight( 0xffffff, 1 )
-    this.pointLight.position.set( 25, 50, 10 )
+    this.pointLight.position.set( -3, 7, 5 )
     this.scene.add(this.pointLight)
+
+    // var directionalLightHelper = new THREE.DirectionalLightHelper(this.pointLight, 50);
+    // this.scene.add( directionalLightHelper);
+
+    var pointLightHelper = new THREE.PointLightHelper( this.pointLight, 1 )
+    this.scene.add(pointLightHelper)
 
     //GROUP
     this.sockGroup = new THREE.Group()
@@ -105,7 +132,7 @@ class ThreeView extends Component{
 
       }
     })
-    object.position.set(0, 0, 0)
+    object.position.set(3.75, -5, 1.6)
     this.sockGroup.add(object)
   }.bind(this))
 
@@ -137,7 +164,7 @@ sockToeBumpMap.repeat.set(.25, .25)
 
       }
     })
-    object.position.set(0, 0, 0)
+    object.position.set(3.75, -5, 1.6)
     this.sockGroup.add(object)
   }.bind(this))
 
@@ -169,7 +196,7 @@ sockToeBumpMap.repeat.set(.25, .25)
 
       }
     })
-    object.position.set(0, 0, 0)
+    object.position.set(3.75, -5, 1.6)
     this.sockGroup.add(object)
   }.bind(this))
 
@@ -202,13 +229,13 @@ sockToeBumpMap.repeat.set(.25, .25)
 
       }
     })
-    object.position.set(0, 0, 0)
+    object.position.set(3.75, -5, 1.6)
     this.sockGroup.add(object)
   }.bind(this))
 
+    this.sockGroup.rotation.y = - Math.PI / 2;
 
     this.scene.add(this.sockGroup)
-
 
     this.start()
   }
