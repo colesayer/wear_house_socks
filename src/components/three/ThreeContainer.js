@@ -5,8 +5,7 @@ class ThreeContainer extends Component{
   render(){
     return(
       <div id='CanvasContainer'>
-      MY LIFE SOCKS
-        <ThreeView />
+        <ThreeView/>
       </div>
     )
   }

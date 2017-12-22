@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TrackballControls from '../../ref/trackball.js'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
@@ -13,6 +15,12 @@ class ThreeView extends Component{
     this.stop = this.stop.bind(this)
     this.animate = this.animate.bind(this)
     this.THREE = THREE
+  }
+
+  state = {
+    toeColor: this.props.toeColor,
+    heelColor: this.props.heelColor,
+    weltColor: this.props.weltColor
   }
 
   componentDidMount(){
@@ -37,27 +45,6 @@ class ThreeView extends Component{
     this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
     this.camera.position.y = 0;
 		this.camera.position.z = 7;
-//     this.camera.rotation.set()
-//
-//     x
-// :
-// 21.455970434670267
-// y
-// :
-// 4.544360039222428
-// z
-// :
-// 17.337598726109064
-//
-// _x
-// :
-// -0.2564316444102559
-// _y
-// :
-// 0.8749358252957242
-// _z
-// :
-// 0.1985898867613025
 
     //CONTROLS
     this.controls = new TrackballControls(this.camera, this.canvas);
@@ -133,13 +120,14 @@ class ThreeView extends Component{
       }
     })
     object.position.set(3.75, -5, 1.6)
+    object.name = "body"
     this.sockGroup.add(object)
   }.bind(this))
 
 //SOCK TOE
 
 //TOE MATERIAL
-var sockToeMaterial = new THREE.MeshPhongMaterial({color: "green"})
+var sockToeMaterial = new THREE.MeshPhongMaterial({color: this.state.toeColor})
 
 //TOE BUMP MAP
 var sockToeBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -153,7 +141,7 @@ sockToeBumpMap.repeat.set(.25, .25)
   var sockToeLoader = new this.THREE.OBJLoader();
   sockToeLoader.load('./models/exploded/toe.obj', function(object){
     console.log("in initMesh:", object)
-    object.traverse(function(child){
+    object.traverse((child) => {
       if(child instanceof THREE.Mesh){
         console.log("SOCK:", child)
         child.material = sockToeMaterial;
@@ -165,13 +153,14 @@ sockToeBumpMap.repeat.set(.25, .25)
       }
     })
     object.position.set(3.75, -5, 1.6)
+    object.name = "toe"
     this.sockGroup.add(object)
   }.bind(this))
 
   //SOCK HEEL
 
   //HEEL MATERIAL
-  var sockHeelMaterial = new THREE.MeshPhongMaterial({color: "green"})
+  var sockHeelMaterial = new THREE.MeshPhongMaterial({color: this.state.heelColor})
 
   //HEEL BUMP MAP
   var sockHeelBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -197,13 +186,14 @@ sockToeBumpMap.repeat.set(.25, .25)
       }
     })
     object.position.set(3.75, -5, 1.6)
+    object.name = "heel"
     this.sockGroup.add(object)
   }.bind(this))
 
   //SOCK WELT
 
   //WELT MATERIAL
-  var sockWeltMaterial = new THREE.MeshPhongMaterial({color: "green"})
+  var sockWeltMaterial = new THREE.MeshPhongMaterial({color: this.state.weltColor})
 
   //WELT BUMP MAP
   var sockWeltBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647477/knit_texture_seamless_132n_ek1fsj.jpg"
@@ -230,6 +220,7 @@ sockToeBumpMap.repeat.set(.25, .25)
       }
     })
     object.position.set(3.75, -5, 1.6)
+    object.name = "welt"
     this.sockGroup.add(object)
   }.bind(this))
 
@@ -242,6 +233,18 @@ sockToeBumpMap.repeat.set(.25, .25)
 
   componentWillUnmount(){
     this.stop()
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log("in cWRP", this.sockGroup.children[0].children[0].material.color)
+    if(this.props.toeColor !== nextProps.toeColor){
+      this.sockGroup.children[0].children[0].material.color.set(nextProps.toeColor)
+    } else if(this.props.heelColor !== nextProps.heelColor){
+      this.sockGroup.children[1].children[0].material.color.set(nextProps.heelColor)
+    } else if(this.props.weltColor !== nextProps.weltColor){
+      this.sockGroup.children[2].children[0].material.color.set(nextProps.weltColor)
+    }
+
   }
 
   start(){
@@ -268,4 +271,12 @@ animate(){
   }
 }
 
-export default ThreeView
+const mapStateToProps = (state) => {
+  return{
+    toeColor: state.sockToe,
+    heelColor: state.sockHeel,
+    weltColor: state.sockWelt
+  }
+}
+
+export default connect(mapStateToProps)(ThreeView)
