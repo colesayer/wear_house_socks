@@ -81,12 +81,14 @@ class ThreeView extends Component{
     //SOCK BODY
 
     //texture
-    var sockBodyImageURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513720856/floral_200n_copy_dhv1yy.bmp"
+    var sockBodyImageURL = "http://res.cloudinary.com/mylifesocks/image/upload/v1514072588/cream_ma9gqb.png"
+    // var sockBodyImageURL = this.props.selectedDesign.design_url
     const sockBodyTextureL = new THREE.TextureLoader()
     var sockBodyTexture = sockBodyTextureL.load(sockBodyImageURL)
     sockBodyTexture.offset.y -= 1;
     sockBodyTexture.wrapS = THREE.RepeatWrapping;
     sockBodyTexture.repeat.set(2, 2)
+    sockBodyTexture.needsUpdate = true;
 
     //BODY MATERIAL
     var sockBodyMaterial = new THREE.MeshPhongMaterial({color: "white"})
@@ -112,6 +114,7 @@ class ThreeView extends Component{
         console.log("SOCK:", child)
         child.material = sockBodyMaterial;
         child.material.map = sockBodyTexture;
+        child.material.map.needsUpdate = true;
         child.material.bumpMap = sockBodyBumpMap;
         child.material.bumpScale = 0.12
           child.castShadow = true;
@@ -236,13 +239,45 @@ sockToeBumpMap.repeat.set(.25, .25)
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("in cWRP", this.sockGroup.children[0].children[0].material.color)
     if(this.props.toeColor !== nextProps.toeColor){
       this.sockGroup.children[0].children[0].material.color.set(nextProps.toeColor)
     } else if(this.props.heelColor !== nextProps.heelColor){
       this.sockGroup.children[1].children[0].material.color.set(nextProps.heelColor)
     } else if(this.props.weltColor !== nextProps.weltColor){
       this.sockGroup.children[2].children[0].material.color.set(nextProps.weltColor)
+    } else if(this.props.selectedDesign !== nextProps.selectedDesign){
+      // console.log("designURL", typeof nextProps.selectedDesign.design_url)
+      // console.log(this.sockGroup.children[3].children[0].material.map.image)
+
+
+      const sockBodyImageURL = nextProps.selectedDesign.design_url
+      const sockBody = this.sockGroup.children[3].children[0]
+      const sockBodyTextureL = new THREE.TextureLoader()
+
+      console.log("IN CWRP nextProps:", sockBodyImageURL)
+      const sockBodyTexture = sockBodyTextureL.load(sockBodyImageURL, function(texture){
+        console.log("IN TEXTURE LOADER:", texture)
+        texture.offset.y -= 1;
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.repeat.set(2, 2)
+
+        sockBody.material.map = texture
+        sockBody.material.map.needsUpdate = true;
+        sockBody.material.needsUpdate = true;
+      })
+
+
+      // console.log("IN CWRP nextProps:", nextProps.selectedDesign)
+      // var sockBodyImageURL = this.props.selectedDesign.design_url
+      // const sockBody = this.sockGroup.children[3].children[0]
+      // sockBody.material.map = new THREE.TextureLoader().load(sockBodyImageURL, function(){
+      //   console.log("IN TEXTURE LOADER:", sockBody.material)
+      //   sockBody.material.map.needsUpdate = true;
+      //   sockBody.material.needsUpdate = true;
+      // }.bind(this))
+
+
+
     }
 
   }
@@ -275,7 +310,8 @@ const mapStateToProps = (state) => {
   return{
     toeColor: state.sockToe,
     heelColor: state.sockHeel,
-    weltColor: state.sockWelt
+    weltColor: state.sockWelt,
+    selectedDesign: state.selectedDesign,
   }
 }
 

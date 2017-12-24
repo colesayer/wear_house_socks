@@ -5,6 +5,7 @@ export default function rootReducer(
     sockWelt: "#eceade",
     sockBody: {},
     sockDesigns: [],
+    selectedDesign: {},
     isLoading: false
   },
   action
@@ -16,6 +17,14 @@ export default function rootReducer(
       return {...state, sockHeel: action.payload}
     case 'CHOOSE_WELT_COLOR':
       return {...state, sockWelt: action.payload}
+    case 'SAVE_DESIGN':
+      return {...state, sockDesigns: state.sockDesigns.concat(action.payload)}
+    case 'FETCHING_DESIGNS':
+      return {...state, isLoading: true}
+    case 'FETCHED_DESIGNS':
+      return {...state, sockDesigns: action.payload, isLoading: false}
+    case 'SELECT_DESIGN':
+      return {...state, selectedDesign: action.payload}
     default:
     return state
   }
