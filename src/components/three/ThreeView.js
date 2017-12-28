@@ -36,7 +36,7 @@ class ThreeView extends Component{
 
     //RENDERER
     this.renderer = new THREE.WebGLRenderer({antialias: true})
-    this.renderer.setClearColor(0xffffff, 1)
+    this.renderer.setClearColor("#F6ECEC", 1)
     this.renderer.setSize(this.canvasArea.width, this.canvasArea.height);
     this.renderer.domElement.style.zIndex = 5;
     this.canvas.appendChild(this.renderer.domElement);
@@ -257,9 +257,10 @@ sockToeBumpMap.repeat.set(.25, .25)
       console.log("IN CWRP nextProps:", sockBodyImageURL)
       const sockBodyTexture = sockBodyTextureL.load(sockBodyImageURL, function(texture){
         console.log("IN TEXTURE LOADER:", texture)
-        texture.offset.y -= 1;
+        texture.offset.y -= .05;
+        texture.offset.x += .81;
         texture.wrapS = THREE.RepeatWrapping;
-        texture.repeat.set(2, 2)
+        texture.repeat.set(2, 1.05)
 
         sockBody.material.map = texture
         sockBody.material.map.needsUpdate = true;
