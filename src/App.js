@@ -3,6 +3,7 @@ import './App.css';
 import ThreeContainer from './components/three/ThreeContainer.js'
 import SockColorContainer from './components/sockColor/SockColorContainer.js'
 import SockDesignContainer from './components/sockDesign/SockDesignContainer.js'
+import SockBumpContainer from './components/sockBump/sockBumpContainer.js'
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <SockColorContainer />
         <SockDesignContainer />
+        <SockBumpContainer />
         <ThreeContainer />
       </div>
     );

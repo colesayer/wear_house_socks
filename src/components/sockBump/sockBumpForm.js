@@ -5,17 +5,16 @@ import request from 'superagent';
 const CLOUDINARY_UPLOAD_PRESET = 'oklyvbyd'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/mylifesocks/image/upload'
 
-class SockDesignForm extends Component{
+class SockBumpForm extends Component{
 
   state = {
     uploadFile: "",
+    bump_url: "",
     name: "",
-    design_url: "",
     needle_count: 200,
     construction: "Extended-Crew",
-    date: ""
+    cushion: "",
   }
-
 
   handleDrop = (files) => {
     this.setState({
@@ -38,7 +37,7 @@ class SockDesignForm extends Component{
 
       if (response.body.secure_url !== ''){
         this.setState({
-          design_url: response.body.secure_url
+          bump_url: response.body.secure_url
         })
       } else {
         console.log("not a successful upload")
@@ -65,28 +64,31 @@ class SockDesignForm extends Component{
     })
   }
 
-  handleDate = (e) => {
+  handleCushion = (e) => {
     this.setState({
-      date: e.target.value
+      cushion: e.target.value
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const design = {name: this.state.name, design_url: this.state.design_url, needle_count: this.state.needle_count, construction: this.state.construction, date: this.state.date}
-    console.log(design)
+    const bump = {name: this.state.name, bump_url: this.state.design_url, needle_count: this.state.needle_count, construction: this.state.construction, cushion: this.state.cushion}
+    console.log(bump)
 
-    this.props.createDesign(design)
+    this.props.createBump(bump)
 
     this.setState({
       uploadFile: "",
+      bump_url: "",
       name: "",
-      design_url: "",
       needle_count: 200,
       construction: "Extended-Crew",
-      date: ""
+      cushion: "",
     })
   }
+
+
+
 
   render(){
     return(
@@ -103,14 +105,14 @@ class SockDesignForm extends Component{
         </div>
 
         <div className="ImagePreview">
-          {this.state.design_url === "" ? null :
+          {this.state.bump_url === "" ? null :
           <div>
             <p>{this.state.uploadFile.name}</p>
             <img alt="successful upload" src={this.state.design_url} style={{"width": "150px", "margin": "0 auto"}}/>
           </div>}
         </div>
 
-        <form id="DesignInputs" onSubmit={this.handleSubmit}>
+        <form id="BumpInputs" onSubmit={this.handleSubmit}>
           <p>
             <label>Name:</label>
           </p>
@@ -148,20 +150,23 @@ class SockDesignForm extends Component{
             </select>
           </p>
           <p>
-            <label>Date: </label>
+            <label>Cushion:</label>
           </p>
           <p>
-            <input type="number" onChange={this.handleDate} value={this.state.date} placeholder="yyyy"/>
+            <select value={this.state.cushion} onChange={this.handleCushion}>
+              <option value="full">Full</option>
+              <option value="foot-bottom">Foot-Bottom</option>
+              <option value="zoned">Zoned</option>
+            </select>
           </p>
           <p>
             <input type="submit" />
           </p>
         </form>
-
       </div>
+
     )
   }
 }
 
-
-export default SockDesignForm
+export default SockBumpForm

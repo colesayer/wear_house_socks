@@ -15,7 +15,7 @@ body {
 
 #CanvasContainer{
   background-color: white;
-  width: 73%;
+  width: 58%;
   height: 100vh;
   display: block;
   float: left;
@@ -35,6 +35,20 @@ body {
 }
 
 #SockDesignBar{
+  width: 15%;
+  height: 100vh;
+  display: block;
+  float: left;
+  position: relative;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  box-sizing: border-box;
+  overflow: scroll;
+  text-align: left;
+}
+
+#SockBumpBar{
   width: 15%;
   height: 100vh;
   display: block;
