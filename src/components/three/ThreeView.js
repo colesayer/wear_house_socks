@@ -117,8 +117,6 @@ class ThreeView extends Component{
         child.material.map.needsUpdate = true;
         child.material.bumpMap = sockBodyBumpMap;
         child.material.bumpScale = 0.12
-          child.castShadow = true;
-          child.receiveShadow = true;
 
       }
     })
@@ -246,13 +244,9 @@ sockToeBumpMap.repeat.set(.25, .25)
     } else if(this.props.weltColor !== nextProps.weltColor){
       this.sockGroup.children[2].children[0].material.color.set(nextProps.weltColor)
     } else if(this.props.selectedDesign !== nextProps.selectedDesign){
-      // console.log("designURL", typeof nextProps.selectedDesign.design_url)
-      // console.log(this.sockGroup.children[3].children[0].material.map.image)
-
-
-      const sockBodyImageURL = nextProps.selectedDesign.design_url
-      const sockBody = this.sockGroup.children[3].children[0]
-      const sockBodyTextureL = new THREE.TextureLoader()
+      let sockBodyImageURL = nextProps.selectedDesign.design_url
+      let sockBody = this.sockGroup.children[3].children[0]
+      let sockBodyTextureL = new THREE.TextureLoader()
 
       console.log("IN CWRP nextProps:", sockBodyImageURL)
       const sockBodyTexture = sockBodyTextureL.load(sockBodyImageURL, function(texture){
@@ -267,16 +261,22 @@ sockToeBumpMap.repeat.set(.25, .25)
         sockBody.material.needsUpdate = true;
       })
 
+    } else if(this.props.selectedBump !== nextProps.selectedBump){
+      let sockBodyBumpUrl = nextProps.selectedBump.bump_url
+      let sockBody = this.sockGroup.children[3].children[0]
 
-      // console.log("IN CWRP nextProps:", nextProps.selectedDesign)
-      // var sockBodyImageURL = this.props.selectedDesign.design_url
-      // const sockBody = this.sockGroup.children[3].children[0]
-      // sockBody.material.map = new THREE.TextureLoader().load(sockBodyImageURL, function(){
-      //   console.log("IN TEXTURE LOADER:", sockBody.material)
-      //   sockBody.material.map.needsUpdate = true;
-      //   sockBody.material.needsUpdate = true;
-      // }.bind(this))
+      let sockBodyBumpTextureLoader = new THREE.TextureLoader()
+      const sockBodyBumpMap = sockBodyBumpTextureLoader.load(sockBodyBumpUrl, function(bump){
+        console.log("IN BUMP LOADER:", bump)
+        sockBodyBumpMap.wrapT = THREE.RepeatWrapping;
+        sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
+        sockBodyBumpMap.repeat.set(4, 4)
 
+        sockBody.material.bumpMap = sockBodyBumpMap;
+        sockBody.material.bumpScale = 0.12
+        sockBody.material.bumpMap.needsUpdate = true;
+        sockBody.material.needsUpdate = true;
+      })
 
 
     }
@@ -313,6 +313,7 @@ const mapStateToProps = (state) => {
     heelColor: state.sockHeel,
     weltColor: state.sockWelt,
     selectedDesign: state.selectedDesign,
+    selectedBump: state.selectedBump,
   }
 }
 

@@ -72,7 +72,7 @@ class SockBumpForm extends Component{
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const bump = {name: this.state.name, bump_url: this.state.design_url, needle_count: this.state.needle_count, construction: this.state.construction, cushion: this.state.cushion}
+    const bump = {name: this.state.name, bump_url: this.state.bump_url, needle_count: this.state.needle_count, construction: this.state.construction, cushion: this.state.cushion}
     console.log(bump)
 
     this.props.createBump(bump)
@@ -108,7 +108,7 @@ class SockBumpForm extends Component{
           {this.state.bump_url === "" ? null :
           <div>
             <p>{this.state.uploadFile.name}</p>
-            <img alt="successful upload" src={this.state.design_url} style={{"width": "150px", "margin": "0 auto"}}/>
+            <img alt="successful upload" src={this.state.bump_url} style={{"width": "150px", "margin": "0 auto"}}/>
           </div>}
         </div>
 

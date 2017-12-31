@@ -10,7 +10,6 @@ class SockDesignCard extends Component{
     this.props.selectDesign(this.props.design)
   }
   render(){
-    console.log("sockcard", this.props)
     let border = ""
     if(this.props.selectedDesign.id === this.props.design.id){
       border = "2px solid yellow"
