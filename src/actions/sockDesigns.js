@@ -46,3 +46,13 @@ export function selectDesign(design){
     payload: design
   }
 }
+
+export function deleteDesign(params){
+  return function(dispatch){
+    DesignApi.deleteDesign(params)
+      .then((designs) => {
+        console.log("In DeleteDesign", designs)
+        dispatch(fetchedDesigns(designs))
+      })
+  }
+}

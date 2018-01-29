@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SockDesignForm from './SockDesignForm.js'
 import SockDesignList from './SockDesignList.js'
-import { createDesign, fetchDesigns, selectDesign } from '../../actions/sockDesigns.js'
+import { createDesign, fetchDesigns, selectDesign, deleteDesign } from '../../actions/sockDesigns.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -19,7 +19,7 @@ class SockDesignContainer extends Component{
         </div>
         <div style={{"padding": "5%"}}>
         <h4>Select Design:</h4>
-        <SockDesignList sockDesigns={this.props.sockDesigns} selectDesign={this.props.selectDesign} selectedDesign={this.props.selectedDesign}/>
+        <SockDesignList sockDesigns={this.props.sockDesigns} selectDesign={this.props.selectDesign} selectedDesign={this.props.selectedDesign} deleteDesign={this.props.deleteDesign}/>
         </div>
 
       </div>
@@ -39,6 +39,7 @@ const mapDispatchToProps = (dispatch) => {
     createDesign: createDesign,
     fetchDesigns: fetchDesigns,
     selectDesign: selectDesign,
+    deleteDesign: deleteDesign,
   }, dispatch)
 }
 
