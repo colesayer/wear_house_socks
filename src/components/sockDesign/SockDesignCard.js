@@ -5,9 +5,13 @@ class SockDesignCard extends Component{
     selected: false
   }
 
-  handleClick = (e) => {
-    console.log("clicked", e)
+  handleClick = () => {
     this.props.selectDesign(this.props.design)
+  }
+
+  handleDelete = () => {
+    console.log("DELETE", this.props)
+    this.props.deleteDesign(this.props.design)
   }
   render(){
     let border = ""
@@ -18,8 +22,10 @@ class SockDesignCard extends Component{
     }
 
     return(
-      <li>
-      <img src={this.props.design.design_url} style={{"width": "150px", "border": `${border}`}} onClick={this.handleClick}/>
+      <li style={{textAlign: 'center'}}>
+      <button onClick={this.handleDelete} style={{backgroundColor: 'red', color: "yellow", position: 'absolute', float: 'left'}}>X</button>
+        <img src={this.props.design.design_url} style={{"width": "150px", "border": `${border}`, margin: '12% 15% 15% 0%'}} onClick={this.handleClick}/>
+
       </li>
     )
   }
