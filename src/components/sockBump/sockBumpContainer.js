@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SockBumpForm from './sockBumpForm.js'
 import SockBumpList from './sockBumpList.js'
-import { createBump, fetchBumps, selectBump } from '../../actions/sockBumps.js'
+import { createBump, fetchBumps, selectBump, deleteBump } from '../../actions/sockBumps.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -18,7 +18,7 @@ class SockBumpContainer extends Component{
         </div>
         <div style={{"padding": "5%"}}>
         <h4>Select Bump Map:</h4>
-        <SockBumpList sockBumps={this.props.sockBumps} selectBump={this.props.selectBump} selectedBump={this.props.selectedBump}/>
+        <SockBumpList sockBumps={this.props.sockBumps} selectBump={this.props.selectBump} selectedBump={this.props.selectedBump} deleteBump={this.props.deleteBump}/>
         </div>
 
       </div>
@@ -36,7 +36,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     createBump: createBump,
     fetchBumps: fetchBumps,
-    selectBump: selectBump
+    selectBump: selectBump,
+    deleteBump: deleteBump,
   }, dispatch)
 }
 

@@ -46,3 +46,13 @@ export function selectBump(bump){
     payload: bump
   }
 }
+
+export function deleteBump(params){
+  return function(dispatch){
+    BumpApi.deleteBump(params)
+      .then((bumps) => {
+        console.log("In DeleteBump", bumps)
+        dispatch(fetchedBumps(bumps))
+      })
+  }
+}
