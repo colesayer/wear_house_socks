@@ -1,5 +1,6 @@
 export default function rootReducer(
   state = {
+    sockConstruction: "Crew",
     sockHeel: "#eceade",
     sockToe: "#eceade",
     sockWelt: "#eceade",
@@ -13,6 +14,8 @@ export default function rootReducer(
   action
 ){
   switch(action.type){
+    case 'CHOOSE_SOCK':
+      return {...state, sockConstruction: action.payload}
     case 'CHOOSE_TOE_COLOR':
       return {...state, sockToe: action.payload}
     case 'CHOOSE_HEEL_COLOR':

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
 
-export function initSock(THREEloader, sockGroup, toeColor, heelColor, weltColor){
+export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, heelColor, weltColor){
 
   //SOCK BODY
 
@@ -28,7 +28,7 @@ export function initSock(THREEloader, sockGroup, toeColor, heelColor, weltColor)
   sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
 
   var sockBodyLoader = new THREEloader.OBJLoader();
-  sockBodyLoader.load('./models/exploded/body.obj', function(object){
+  sockBodyLoader.load(`./models/${sockConstruction}/body.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
@@ -60,7 +60,7 @@ sockToeBumpMap.wrapS = THREE.RepeatWrapping;
 sockToeBumpMap.repeat.set(.25, .25)
 
 var sockToeLoader = new THREEloader.OBJLoader();
-sockToeLoader.load('./models/exploded/toe.obj', function(object){
+sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse((child) => {
     if(child instanceof THREE.Mesh){
@@ -90,7 +90,7 @@ sockHeelBumpMap.wrapS = THREE.RepeatWrapping;
 sockHeelBumpMap.repeat.set(.5, .5)
 
 var sockHeelLoader = new THREEloader.OBJLoader();
-sockHeelLoader.load('./models/exploded/heel.obj', function(object){
+sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
@@ -121,7 +121,7 @@ sockWeltBumpMap.repeat.set(1.5, 1.5)
 
 
 var sockWeltLoader = new THREEloader.OBJLoader();
-sockWeltLoader.load('./models/exploded/welt.obj', function(object){
+sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){

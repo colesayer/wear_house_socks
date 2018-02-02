@@ -67,7 +67,7 @@ class ThreeView extends Component{
     //GROUP
     this.sockGroup = new THREE.Group()
 
-    initSock(this.THREE, this.sockGroup, this.props.toeColor, this.props.heelColor, this.props.weltColor)
+    initSock(this.THREE, this.sockGroup, this.props.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor)
 
     this.scene.add(this.sockGroup)
 
@@ -79,6 +79,14 @@ class ThreeView extends Component{
   }
 
   componentWillReceiveProps(nextProps){
+    if(this.props.sockConstruction !== nextProps.sockConstruction){
+      this.scene.remove(this.sockGroup)
+      this.sockGroup = new THREE.Group()
+      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor)
+      this.scene.add(this.sockGroup)
+      console.log("CONSTRUCTION", this.scene)
+
+    }
     if(this.props.toeColor !== nextProps.toeColor){
       this.sockGroup.children[0].children[0].material.color.set(nextProps.toeColor)
     } else if(this.props.heelColor !== nextProps.heelColor){
@@ -124,21 +132,23 @@ class ThreeView extends Component{
 
   }
 
+
+
   start(){
-  if (!this.frameId) {
-  this.frameId = requestAnimationFrame(this.animate)
+    if (!this.frameId) {
+    this.frameId = requestAnimationFrame(this.animate)
+    }
   }
-}
 
-stop(){
-  cancelAnimationFrame(this.frameId)
-}
+  stop(){
+    cancelAnimationFrame(this.frameId)
+  }
 
-animate(){
-  this.controls.update()
-  this.renderer.render(this.scene, this.camera)
-  this.frameId = window.requestAnimationFrame(this.animate)
-}
+  animate(){
+    this.controls.update()
+    this.renderer.render(this.scene, this.camera)
+    this.frameId = window.requestAnimationFrame(this.animate)
+  }
 
   render(){
     return(
@@ -148,8 +158,10 @@ animate(){
   }
 }
 
+
 const mapStateToProps = (state) => {
   return{
+    sockConstruction: state.sockConstruction,
     toeColor: state.sockToe,
     heelColor: state.sockHeel,
     weltColor: state.sockWelt,
