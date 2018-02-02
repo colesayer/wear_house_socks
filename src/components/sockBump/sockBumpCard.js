@@ -26,7 +26,7 @@ class SockBumpCard extends Component{
 
     return(
       <li style={{textAlign: 'center'}}>
-        <button onClick={this.handleDelete} style={{backgroundColor: 'red', color: "yellow", position: 'absolute', float: 'left'}}>X</button>
+        <button onClick={this.handleDelete} style={{backgroundColor: 'white', color: "gray", position: 'absolute', float: 'left'}}>X</button>
         <img src={this.props.bump.bump_url} style={{"width": "150px", "border": `${border}`, margin: '12% 15% 15% 0%'}} onClick={this.handleClick}/>
       </li>
     )
