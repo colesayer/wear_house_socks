@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 
 class SockDesignCard extends Component{
-  state={
-    selected: false
-  }
 
   handleClick = () => {
     this.props.selectDesign(this.props.design)
   }
 
   handleDelete = () => {
-    console.log("DELETE", this.props)
     this.props.deleteDesign(this.props.design)
   }
+
+
   render(){
+    console.log("DESIGN CARD", this.state)
     let border = ""
     if(this.props.selectedDesign.id === this.props.design.id){
       border = "2px solid yellow"

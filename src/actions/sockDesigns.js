@@ -47,6 +47,12 @@ export function selectDesign(design){
   }
 }
 
+export function deselectDesign(){
+  return {
+    type: 'DESELECT_DESIGN',
+  }
+}
+
 export function deleteDesign(params){
   return function(dispatch){
     DesignApi.deleteDesign(params)
