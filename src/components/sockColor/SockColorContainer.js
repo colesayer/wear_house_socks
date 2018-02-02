@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SockColorForm from './SockColorForm.js'
+import SockColorForm from './sockColorForm.js'
 
 class SockColorContainer extends Component{
   render(){

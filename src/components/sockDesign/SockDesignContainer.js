@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SockDesignForm from './SockDesignForm.js'
-import SockDesignList from './SockDesignList.js'
+import SockDesignForm from './sockDesignForm.js'
+import SockDesignList from './sockDesignList.js'
 import { createDesign, fetchDesigns, selectDesign, deleteDesign } from '../../actions/sockDesigns.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

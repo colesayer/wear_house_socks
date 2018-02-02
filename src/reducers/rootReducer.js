@@ -1,5 +1,6 @@
 export default function rootReducer(
   state = {
+    sockConstruction: "Crew",
     sockHeel: "#eceade",
     sockToe: "#eceade",
     sockWelt: "#eceade",
@@ -13,6 +14,8 @@ export default function rootReducer(
   action
 ){
   switch(action.type){
+    case 'CHOOSE_SOCK':
+      return {...state, sockConstruction: action.payload}
     case 'CHOOSE_TOE_COLOR':
       return {...state, sockToe: action.payload}
     case 'CHOOSE_HEEL_COLOR':
@@ -27,6 +30,8 @@ export default function rootReducer(
       return {...state, sockDesigns: action.payload, isLoading: false}
     case 'SELECT_DESIGN':
       return {...state, selectedDesign: action.payload}
+    case 'DESELECT_DESIGN':
+      return {...state, selectedDesign: {}}
     case 'SAVE_BUMP':
       return {...state, sockBumps: state.sockBumps.concat(action.payload)}
     case 'FETCHING_BUMPS':
@@ -35,6 +40,8 @@ export default function rootReducer(
       return {...state, sockBumps: action.payload, isLoading: false}
     case 'SELECT_BUMP':
       return {...state, selectedBump: action.payload}
+    case 'CLEAR_PARAMS':
+      return {...state, sockHeel: "#eceade", sockToe: "#eceade", sockWelt: "#eceade", selectedDesign: {}, selectedBump: {}}
     default:
     return state
   }

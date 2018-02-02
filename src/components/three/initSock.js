@@ -2,8 +2,7 @@ import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
 
-export function initSock(THREEloader, sockGroup, toeColor, heelColor, weltColor){
-
+export function initSock(THREEloader, sockGroup, sockConstruction){
   //SOCK BODY
 
   //texture
@@ -28,7 +27,7 @@ export function initSock(THREEloader, sockGroup, toeColor, heelColor, weltColor)
   sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
 
   var sockBodyLoader = new THREEloader.OBJLoader();
-  sockBodyLoader.load('./models/exploded/body.obj', function(object){
+  sockBodyLoader.load(`./models/${sockConstruction}/body.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
@@ -48,7 +47,7 @@ export function initSock(THREEloader, sockGroup, toeColor, heelColor, weltColor)
 //SOCK TOE
 
 //TOE MATERIAL
-var sockToeMaterial = new THREE.MeshPhongMaterial({color: toeColor})
+var sockToeMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
 
 //TOE BUMP MAP
 var sockToeBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -60,7 +59,7 @@ sockToeBumpMap.wrapS = THREE.RepeatWrapping;
 sockToeBumpMap.repeat.set(.25, .25)
 
 var sockToeLoader = new THREEloader.OBJLoader();
-sockToeLoader.load('./models/exploded/toe.obj', function(object){
+sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse((child) => {
     if(child instanceof THREE.Mesh){
@@ -78,7 +77,7 @@ sockToeLoader.load('./models/exploded/toe.obj', function(object){
 //SOCK HEEL
 
 //HEEL MATERIAL
-var sockHeelMaterial = new THREE.MeshPhongMaterial({color: heelColor})
+var sockHeelMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
 
 //HEEL BUMP MAP
 var sockHeelBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -90,7 +89,7 @@ sockHeelBumpMap.wrapS = THREE.RepeatWrapping;
 sockHeelBumpMap.repeat.set(.5, .5)
 
 var sockHeelLoader = new THREEloader.OBJLoader();
-sockHeelLoader.load('./models/exploded/heel.obj', function(object){
+sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
@@ -108,7 +107,7 @@ sockHeelLoader.load('./models/exploded/heel.obj', function(object){
 //SOCK WELT
 
 //WELT MATERIAL
-var sockWeltMaterial = new THREE.MeshPhongMaterial({color: weltColor})
+var sockWeltMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
 
 //WELT BUMP MAP
 var sockWeltBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647477/knit_texture_seamless_132n_ek1fsj.jpg"
@@ -121,7 +120,7 @@ sockWeltBumpMap.repeat.set(1.5, 1.5)
 
 
 var sockWeltLoader = new THREEloader.OBJLoader();
-sockWeltLoader.load('./models/exploded/welt.obj', function(object){
+sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, function(object){
   console.log("in initMesh:", object)
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){

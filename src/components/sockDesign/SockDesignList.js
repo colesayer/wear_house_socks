@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SockDesignCard from './SockDesignCard.js'
+import SockDesignCard from './sockDesignCard.js'
 
 class SockDesignList extends Component{
   render(){
