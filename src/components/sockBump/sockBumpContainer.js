@@ -11,7 +11,7 @@ class SockBumpContainer extends Component{
   }
   render(){
     return(
-      <div id="SockBumpBar">
+      <div className="sock-bump-container">
         <div style={{"padding": "5%"}}>
         <h4>Add Bump Map:</h4>
         <SockBumpForm createBump={this.props.createBump}/>

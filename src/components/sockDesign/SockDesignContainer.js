@@ -12,7 +12,7 @@ class SockDesignContainer extends Component{
   }
   render(){
     return(
-      <div id="SockDesignBar">
+      <div className="sock-design-container">
         <div style={{"padding": "5%"}}>
         <h4>Add Design:</h4>
         <SockDesignForm createDesign={this.props.createDesign}/>

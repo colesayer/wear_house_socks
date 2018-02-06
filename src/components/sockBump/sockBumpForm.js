@@ -112,7 +112,7 @@ class SockBumpForm extends Component{
           </div>}
         </div>
 
-        <form id="BumpInputs" onSubmit={this.handleSubmit}>
+        <form className="sock-bump-form" onSubmit={this.handleSubmit}>
           <p>
             <label>Name:</label>
           </p>

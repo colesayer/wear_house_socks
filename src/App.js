@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ThreeContainer from './components/three/ThreeContainer.js'
+import ThreeContainer from './components/three/threeContainer.js'
 import SockPickerContainer from './components/sockPicker/sockPickerContainer.js'
 import SockColorContainer from './components/sockColor/sockColorContainer.js'
 import SockDesignContainer from './components/sockDesign/sockDesignContainer.js'
@@ -10,11 +10,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SockPickerContainer />
-        <SockColorContainer />
-        <SockDesignContainer />
-        <SockBumpContainer />
-        <ThreeContainer />
+        <div className="sidebar">
+          <SockPickerContainer />
+          <SockColorContainer />
+          <SockDesignContainer />
+          <SockBumpContainer />
+        </div>
+        <div className="three-container">
+          <ThreeContainer />
+        </div>
       </div>
     );
   }

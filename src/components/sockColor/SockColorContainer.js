@@ -4,7 +4,7 @@ import SockColorForm from './sockColorForm.js'
 class SockColorContainer extends Component{
   render(){
     return(
-      <div id="SockColorBar">
+      <div className="sock-color-container">
         <SockColorForm />
       </div>
     )

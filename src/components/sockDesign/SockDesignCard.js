@@ -21,10 +21,10 @@ class SockDesignCard extends Component{
     }
 
     return(
-      <li style={{textAlign: 'center'}}>
-      <button onClick={this.handleDelete} style={{backgroundColor: 'white', color: "gray", position: 'absolute', float: 'left'}}>X</button>
-        <img src={this.props.design.design_url} style={{"width": "150px", "border": `${border}`, margin: '12% 15% 15% 0%'}} onClick={this.handleClick}/>
-
+      <li className="sock-design-card" style={{textAlign: 'center'}}>
+        <button onClick={this.handleDelete}>X</button>
+        <img src={this.props.design.design_url} style={{"border": `${border}`}} onClick={this.handleClick}/>
+        <p>{this.props.design.name}</p>
       </li>
     )
   }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import ThreeView from './ThreeView.js';
+import ThreeView from './threeView.js';
+import ThreeControls from './threeControls.js'
 
 class ThreeContainer extends Component{
   render(){
     return(
       <div id='CanvasContainer'>
+        <ThreeControls />
         <ThreeView/>
       </div>
     )
