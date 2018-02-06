@@ -13,6 +13,28 @@ body {
   display: block;
 }
 
+.navbar{
+  height: 5vh;
+  width: 100%;
+  background-color: red;
+  position: relative;
+  display: block;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 1px 1px 1px;
+  box-sizing: border-box;
+}
+
+.navbar ul{
+  list-style: none;
+  text-align: center;
+}
+
+.navbar li{
+  display: inline-block;
+}
+
 .three-container{
   background-color: red;
   height: 100vh;
@@ -29,12 +51,17 @@ body {
   display: block;
   float: left;
   position: relative;
+  line-height: 40px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 1px 1px 0;
+  box-sizing: border-box;
 }
 
 #Canvas{
   background: #C9D6FF;
   width: 100%;
-  height: 100%;
+  height: 95vh;
   display: block;
   float: left;
   position: relative;
@@ -68,15 +95,31 @@ body {
   line-height: 40px;
   border-style: solid;
   border-color: black;
-  border-width: 1px 1px 0 1px;
+  border-width: 0 1px 0 1px;
   box-sizing: border-box;
 }
 
+.sock-gallery-container{
+  background-color: pink;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 95vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 1px 1px 1px;
+  box-sizing: border-box;
+}
+
+.sock-gallery-container img{
+  width: 150px;
+}
 
 
 .sock-color-container{
   width: 27%;
-  height: 95vh;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;
@@ -88,7 +131,7 @@ body {
 
 .sock-design-container{
   width: 36.5%;
-  height: 95vh;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;
@@ -123,7 +166,7 @@ body {
 
 .sock-bump-container{
   width: 36.5%;
-  height: 95vh;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;

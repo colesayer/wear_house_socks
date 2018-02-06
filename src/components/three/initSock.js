@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
 
-export function initSock(THREEloader, sockGroup, sockConstruction){
+export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, heelColor, weltColor){
   //SOCK BODY
 
   //texture
@@ -47,7 +47,7 @@ export function initSock(THREEloader, sockGroup, sockConstruction){
 //SOCK TOE
 
 //TOE MATERIAL
-var sockToeMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
+var sockToeMaterial = new THREE.MeshPhongMaterial({color: `${toeColor}`})
 
 //TOE BUMP MAP
 var sockToeBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -77,7 +77,7 @@ sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, function(object){
 //SOCK HEEL
 
 //HEEL MATERIAL
-var sockHeelMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
+var sockHeelMaterial = new THREE.MeshPhongMaterial({color: `${heelColor}`})
 
 //HEEL BUMP MAP
 var sockHeelBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647868/knit_texture_seamless_132n_fine_q6pl3n.jpg"
@@ -107,7 +107,7 @@ sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, function(object){
 //SOCK WELT
 
 //WELT MATERIAL
-var sockWeltMaterial = new THREE.MeshPhongMaterial({color: "#eceade"})
+var sockWeltMaterial = new THREE.MeshPhongMaterial({color: `${weltColor}`})
 
 //WELT BUMP MAP
 var sockWeltBumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513647477/knit_texture_seamless_132n_ek1fsj.jpg"
