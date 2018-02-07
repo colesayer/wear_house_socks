@@ -4,28 +4,64 @@ body {
   font-family: sans-serif;
 }
 
-.sock-picker-container{
+.sidebar{
+  background-color: #F6ECEC;
+  height: 100vh;
+  width: 42vw;
   position: relative;
-  display: block;
   float: left;
-  height: 5vh;
-  width: 100%;
+  display: block;
 }
 
-.sock-picker-form{
-  position: relative;
+.navbar{
+  height: 5vh;
+  width: 100%;
   background-color: red;
+  position: relative;
   display: block;
   float: left;
-  height: 100%;
-  width: 42%;
-  line-height: 50px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 1px 1px 1px;
+  box-sizing: border-box;
+}
+
+.navbar ul{
+  list-style: none;
+  text-align: center;
+}
+
+.navbar li{
+  display: inline-block;
+}
+
+.three-container{
+  background-color: red;
+  height: 100vh;
+  width: 58vw;
+  position: relative;
+  float: left;
+  display: block;
+}
+
+.three-controls{
+  background-color: blue;
+  height: 5vh;
+  width: 100%;
+  display: block;
+  float: left;
+  position: relative;
+  line-height: 40px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 1px 1px 0;
+  box-sizing: border-box;
 }
 
 #Canvas{
-  background: #C9D6FF;
+  background: #F6ECEC;
   width: 100%;
-  height: 100%;
+  height: 95vh;
   display: block;
   float: left;
   position: relative;
@@ -33,16 +69,65 @@ body {
 
 #CanvasContainer{
   background-color: white;
-  width: 58%;
-  height: 95vh;
+  width: 100%;
+  height: 100vh;
   display: block;
   float: left;
   position: relative;
 }
 
-#SockColorBar{
-  width: 12%;
+.sock-picker-container{
+  position: relative;
+  display: block;
+  float: left;
+  height: 5vh;
+  width: 100%;
+  background-color: yellow;
+}
+
+.sock-picker-form{
+  position: relative;
+  background-color: yellow;
+  display: block;
+  float: left;
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 1px 0 1px;
+  box-sizing: border-box;
+}
+
+.sock-gallery-container{
+  background-color: #F6ECEC;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
   height: 95vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 1px 1px 1px;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+
+.sock-gallery-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sock-gallery-card img{
+  height: 250px;
+}
+
+
+.sock-color-container{
+  width: 27%;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;
@@ -52,9 +137,9 @@ body {
   text-align: left;
 }
 
-#SockDesignBar{
-  width: 15%;
-  height: 95vh;
+.sock-design-container{
+  width: 36.5%;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;
@@ -66,9 +151,30 @@ body {
   text-align: left;
 }
 
-#SockBumpBar{
-  width: 15%;
-  height: 95vh;
+.sock-design-card{
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.sock-design-card button{
+  background-color: white;
+  color: gray;
+  position: absolute;
+  float: left;
+}
+
+.sock-design-card img{
+  width: 150px;
+  margin: 0;
+}
+
+.sock-design-card p{
+  margin: 0;
+}
+
+.sock-bump-container{
+  width: 36.5%;
+  height: 90vh;
   display: block;
   float: left;
   position: relative;
@@ -78,4 +184,25 @@ body {
   box-sizing: border-box;
   overflow: scroll;
   text-align: left;
+}
+
+.sock-bump-card{
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.sock-bump-card button{
+  background-color: white;
+  color: gray;
+  position: absolute;
+  float: left;
+}
+
+.sock-bump-card img{
+  width: 150px;
+  margin: 0;
+}
+
+.sock-bump-card p{
+  margin: 0;
 }

@@ -12,7 +12,6 @@ class SockBumpCard extends Component{
   }
 
   handleDelete = () => {
-    console.log("DELETE", this.props)
     this.props.deleteBump(this.props.bump)
   }
 
@@ -25,9 +24,10 @@ class SockBumpCard extends Component{
     }
 
     return(
-      <li style={{textAlign: 'center'}}>
-        <button onClick={this.handleDelete} style={{backgroundColor: 'white', color: "gray", position: 'absolute', float: 'left'}}>X</button>
-        <img src={this.props.bump.bump_url} style={{"width": "150px", "border": `${border}`, margin: '12% 15% 15% 0%'}} onClick={this.handleClick}/>
+      <li className="sock-bump-card">
+        <button onClick={this.handleDelete}>X</button>
+        <img src={this.props.bump.bump_url} style={{"border": `${border}`}} onClick={this.handleClick}/>
+        <p>{this.props.bump.name}</p>
       </li>
     )
   }

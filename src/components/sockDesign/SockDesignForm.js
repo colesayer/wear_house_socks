@@ -110,7 +110,7 @@ class SockDesignForm extends Component{
           </div>}
         </div>
 
-        <form id="DesignInputs" onSubmit={this.handleSubmit}>
+        <form className="sock-design-form" onSubmit={this.handleSubmit}>
           <p>
             <label>Name:</label>
           </p>

@@ -4,7 +4,7 @@ import SockPickerForm from './sockPickerForm.js'
 class SockPickerContainer extends Component{
   render(){
     return(
-      <div className="sock-picker-container" style={{backgroundColor: 'blue'}}>
+      <div className="sock-picker-container">
         <SockPickerForm />
       </div>
 

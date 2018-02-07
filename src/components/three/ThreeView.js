@@ -3,7 +3,8 @@ import TrackballControls from '../../ref/trackball.js'
 import { initSock } from './initSock.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearParams } from '../../actions/three.js'
+import { clearParams, createSock } from '../../actions/three.js'
+import ThreeControls from './threeControls.js'
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
@@ -29,7 +30,7 @@ class ThreeView extends Component{
     this.canvasArea = this.canvas.getBoundingClientRect()
 
     //RENDERER
-    this.renderer = new THREE.WebGLRenderer({antialias: true})
+    this.renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true})
     this.renderer.setClearColor("#F6ECEC", 1)
     this.renderer.setSize(this.canvasArea.width, this.canvasArea.height);
     this.renderer.domElement.style.zIndex = 5;
@@ -84,8 +85,12 @@ class ThreeView extends Component{
       this.scene.remove(this.sockGroup)
       this.props.clearParams()
       this.sockGroup = new THREE.Group()
-      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor)
+      this.toeColor = "#ECEADE"
+      this.heelColor = "#ECEADE"
+      this.weltColor = "#ECEADE"
+      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.toeColor, this.heelColor, this.weltColor)
       this.scene.add(this.sockGroup)
+      this.resetCamera()
       console.log("CONSTRUCTION", this.scene)
     }
     if(this.sockGroup.children[3]){
@@ -128,13 +133,8 @@ class ThreeView extends Component{
           sockBody.material.bumpMap.needsUpdate = true;
           sockBody.material.needsUpdate = true;
         })
-
-
       }
-
     }
-
-
   }
 
 
@@ -155,10 +155,24 @@ class ThreeView extends Component{
     this.frameId = window.requestAnimationFrame(this.animate)
   }
 
+  resetCamera = () => {
+    this.camera.up.set( 0, 0, 0 );
+    this.camera.position.set(0, 0, 7)
+    this.controls.reset()
+  }
+
+  handleSave = (name) => {
+    const image = this.renderer.domElement.toDataURL()
+    const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
+    console.log(params)
+    this.props.createSock(params)
+  }
+
   render(){
     return(
-      <div
-      ref={(canvas) => {this.canvas = canvas}}>
+      <div>
+        <ThreeControls onSave={this.handleSave} resetCamera={this.resetCamera} {...this.props}/>
+        <div ref={(canvas) => {this.canvas = canvas}}/>
       </div>
     )
   }
@@ -178,7 +192,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    clearParams: clearParams
+    clearParams: clearParams,
+    createSock: createSock
   }, dispatch)
 }
 
