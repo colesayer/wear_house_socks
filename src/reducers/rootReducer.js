@@ -11,6 +11,7 @@ export default function rootReducer(
     selectedBump: {},
     isLoading: false,
     savedSocks: [],
+    selectedSock: {},
   },
   action
 ){
@@ -49,6 +50,8 @@ export default function rootReducer(
       return {...state, isLoading: true}
     case 'FETCHED_SOCKS':
       return {...state, savedSocks: action.payload, isLoading: false}
+    case 'SELECTED_SOCK':
+      return {...state, selectedSock: action.payload}
     default:
     return state
   }

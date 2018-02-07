@@ -14,4 +14,9 @@ export default class DesignApi{
   // }).then((res) => res.json())
   // }
 
+  static fetchSock(params){
+    return fetch(`http://localhost:3000/socks/${params.id}`)
+    .then((res) => res.json())
+  }
+
 }

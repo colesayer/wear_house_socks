@@ -5,7 +5,7 @@ body {
 }
 
 .sidebar{
-  background-color: green;
+  background-color: #F6ECEC;
   height: 100vh;
   width: 42vw;
   position: relative;
@@ -59,7 +59,7 @@ body {
 }
 
 #Canvas{
-  background: #C9D6FF;
+  background: #F6ECEC;
   width: 100%;
   height: 95vh;
   display: block;
@@ -100,7 +100,7 @@ body {
 }
 
 .sock-gallery-container{
-  background-color: pink;
+  background-color: #F6ECEC;
   display: block;
   position: relative;
   float: left;
@@ -112,8 +112,15 @@ body {
   box-sizing: border-box;
 }
 
-.sock-gallery-container img{
-  width: 150px;
+.sock-gallery-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sock-gallery-card img{
+  height: 250px;
 }
 
 
