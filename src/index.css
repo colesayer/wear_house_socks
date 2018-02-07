@@ -110,6 +110,7 @@ body {
   border-color: black;
   border-width: 0 1px 1px 1px;
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 .sock-gallery-list{

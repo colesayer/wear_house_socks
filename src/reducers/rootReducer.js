@@ -43,7 +43,7 @@ export default function rootReducer(
     case 'SELECT_BUMP':
       return {...state, selectedBump: action.payload}
     case 'CLEAR_PARAMS':
-      return {...state, sockHeel: "#eceade", sockToe: "#eceade", sockWelt: "#eceade", selectedDesign: {}, selectedBump: {}}
+      return {...state, sockHeel: "#eceade", sockToe: "#eceade", sockWelt: "#eceade", selectedDesign: {}, selectedBump: {}, selectedSock: {}}
     case 'SAVE_SOCK':
       return {...state, savedSocks: state.savedSocks.concat(action.payload)}
     case 'FETCHING_SOCKS':

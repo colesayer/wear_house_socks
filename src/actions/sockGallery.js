@@ -2,6 +2,7 @@ import SockApi from '../services/sockapi.js'
 import {chooseToeColor, chooseHeelColor, chooseWeltColor} from './sockColors.js'
 import {selectDesign} from './sockDesigns.js'
 import {selectBump} from './sockBumps.js'
+import {chooseSock} from './sockPicker.js'
 
 export function fetchSocks(){
   return function(dispatch){
