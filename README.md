@@ -15,5 +15,5 @@ Built with React, Redux, and Three.js. Assets modeled in Blender.
 3.  Change to the cloned directory from your terminal
 4.  Run 'npm install'
 5.  Run 'npm start'.  If the backend is also running, it will ask you to switch ports. Type 'y' and hit 'enter'.
-6.  Gallerina will run on http://localhost:3001/
-7. Design some shows!
+6.  My Life Socks will run on http://localhost:3001/
+7. Customize some socks!
