@@ -12,6 +12,7 @@ My Life Socks is a product customization and visualization tool utilizing the po
 In its current state, a user can choose a sock construction (crew and extended crew for now), pick the heel, toe, and top band colors, choose a pre-made design or upload a design of their own, and choose the type of knit. The app updates the 3d model in real time, giving the user a photo-realistic-ish 3d representation of the sock they're creating. Many new features will be added soon.
 
 ### Built with
+* Assets were modeled in Blender,
 * "react": "^16.2.0",
 * "react-bootstrap": "^0.31.5",
 * "react-color": "^2.13.8",
