@@ -137,7 +137,11 @@ class ThreeView extends Component{
 
       } else if(this.props.selectedBump !== nextProps.selectedBump){
         let sockBodyBumpUrl = nextProps.selectedBump.bump_url
-        let sockBody = this.sockGroup.children[3].children[0]
+        let sock = this.sockGroup.children.filter((item) => {
+          return item.name === "body"
+        })
+
+        let sockBody = sock[0].children[0]
 
         let sockBodyBumpTextureLoader = new THREE.TextureLoader()
         const sockBodyBumpMap = sockBodyBumpTextureLoader.load(sockBodyBumpUrl, function(bump){
