@@ -27,11 +27,9 @@ export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, hee
   sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
 
   var sockBodyLoader = new THREEloader.OBJLoader();
-  sockBodyLoader.load(`./models/${sockConstruction}/body.obj`, function(object){
-  console.log("in initMesh:", object)
+  sockBodyLoader.load(`./models/${sockConstruction}/body.obj`, (object) => {
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
-      console.log("SOCK:", child)
       child.material = sockBodyMaterial;
       child.material.map = sockBodyTexture;
       child.material.map.needsUpdate = true;
@@ -42,7 +40,7 @@ export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, hee
   object.position.set(3.75, -5, 1.6)
   object.name = "body"
   sockGroup.add(object)
-}.bind(this))
+})
 
 //SOCK TOE
 
@@ -59,11 +57,9 @@ sockToeBumpMap.wrapS = THREE.RepeatWrapping;
 sockToeBumpMap.repeat.set(.25, .25)
 
 var sockToeLoader = new THREEloader.OBJLoader();
-sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, function(object){
-  console.log("in initMesh:", object)
+sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, (object) => {
   object.traverse((child) => {
     if(child instanceof THREE.Mesh){
-      console.log("SOCK:", child)
       child.material = sockToeMaterial;
       child.material.bumpMap = sockToeBumpMap;
       child.material.bumpScale = 0.12
@@ -72,7 +68,7 @@ sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, function(object){
   object.position.set(3.75, -5, 1.6)
   object.name = "toe"
   sockGroup.add(object)
-}.bind(this))
+})
 
 //SOCK HEEL
 
@@ -89,11 +85,9 @@ sockHeelBumpMap.wrapS = THREE.RepeatWrapping;
 sockHeelBumpMap.repeat.set(.5, .5)
 
 var sockHeelLoader = new THREEloader.OBJLoader();
-sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, function(object){
-  console.log("in initMesh:", object)
+sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, (object) => {
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
-      console.log("SOCK:", child)
       child.material = sockHeelMaterial;
       child.material.bumpMap = sockHeelBumpMap;
       child.material.bumpScale = 0.12
@@ -102,7 +96,7 @@ sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, function(object){
   object.position.set(3.75, -5, 1.6)
   object.name = "heel"
   sockGroup.add(object)
-}.bind(this))
+})
 
 //SOCK WELT
 
@@ -120,11 +114,9 @@ sockWeltBumpMap.repeat.set(1.5, 1.5)
 
 
 var sockWeltLoader = new THREEloader.OBJLoader();
-sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, function(object){
-  console.log("in initMesh:", object)
+sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, (object) => {
   object.traverse(function(child){
     if(child instanceof THREE.Mesh){
-      console.log("SOCK:", child)
       child.material = sockWeltMaterial;
       child.material.bumpMap = sockWeltBumpMap;
       child.material.bumpScale = 0.12
@@ -133,7 +125,7 @@ sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, function(object){
   object.position.set(3.75, -5, 1.6)
   object.name = "welt"
   sockGroup.add(object)
-}.bind(this))
+})
 
 sockGroup.rotation.y = - Math.PI / 2;
 

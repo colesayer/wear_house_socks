@@ -53,7 +53,6 @@ class ThreeView extends Component{
     this.controls.minDistance = 2;
     this.controls.maxDistance = 12;
 
-    console.log(this.controls)
 
     //SCENE
     this.scene = new THREE.Scene();
@@ -95,23 +94,37 @@ class ThreeView extends Component{
       initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.toeColor, this.heelColor, this.weltColor)
       this.scene.add(this.sockGroup)
       this.resetCamera()
-      console.log("CONSTRUCTION", this.scene)
     }
     if(this.sockGroup.children[3]){
+      console.log(this.sockGroup.children)
       if(this.props.toeColor !== nextProps.toeColor){
-        this.sockGroup.children[0].children[0].material.color.set(nextProps.toeColor)
+        var toe = this.sockGroup.children.filter((item) => {
+          return item.name === "toe"
+        })
+        toe[0].children[0].material.color.set(nextProps.toeColor)
       } else if(this.props.heelColor !== nextProps.heelColor){
-        this.sockGroup.children[1].children[0].material.color.set(nextProps.heelColor)
+        var heel = this.sockGroup.children.filter((item) => {
+          return item.name === "heel"
+        })
+        heel[0].children[0].material.color.set(nextProps.toeColor)
       } else if(this.props.weltColor !== nextProps.weltColor){
-        this.sockGroup.children[2].children[0].material.color.set(nextProps.weltColor)
+        var welt = this.sockGroup.children.filter((item) => {
+          return item.name === "welt"
+        })
+        welt[0].children[0].material.color.set(nextProps.toeColor)
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
         let sockBodyImageURL = nextProps.selectedDesign.design_url
-        let sockBody = this.sockGroup.children[3].children[0]
+        // let sockBody = this.sockGroup.children[3].children[0]
+        let sock = this.sockGroup.children.filter((item) => {
+          return item.name === "body"
+        })
+
+        let sockBody = sock[0].children[0]
+
+
         let sockBodyTextureL = new THREE.TextureLoader()
 
-        console.log("IN CWRP nextProps:", sockBodyImageURL)
-        const sockBodyTexture = sockBodyTextureL.load(sockBodyImageURL, function(texture){
-          console.log("IN TEXTURE LOADER:", texture)
+        sockBodyTextureL.load(sockBodyImageURL, function(texture){
           texture.offset.y -= 1;
           texture.offset.x += .6;
           texture.wrapS = THREE.RepeatWrapping;
@@ -128,7 +141,6 @@ class ThreeView extends Component{
 
         let sockBodyBumpTextureLoader = new THREE.TextureLoader()
         const sockBodyBumpMap = sockBodyBumpTextureLoader.load(sockBodyBumpUrl, function(bump){
-          console.log("IN BUMP LOADER:", bump)
           sockBodyBumpMap.wrapT = THREE.RepeatWrapping;
           sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
 
@@ -168,7 +180,6 @@ class ThreeView extends Component{
   handleSave = (name) => {
     const image = this.renderer.domElement.toDataURL()
     const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
-    console.log(params)
     this.props.createSock(params)
   }
 

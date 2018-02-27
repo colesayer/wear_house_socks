@@ -7,17 +7,14 @@ import { chooseToeColor, chooseHeelColor, chooseWeltColor } from '../../actions/
 class SockColorForm extends Component{
 
   handleToeColor = (color) => {
-    console.log("toe color:", color.hex)
     this.props.chooseToeColor(color.hex)
   }
 
   handleHeelColor = (color) => {
-    console.log("heel color:", color.hex)
     this.props.chooseHeelColor(color.hex)
   }
 
   handleWeltColor = (color) => {
-    console.log("welt color:", color.hex)
     this.props.chooseWeltColor(color.hex)
   }
   render(){

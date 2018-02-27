@@ -4,7 +4,6 @@ export function createBump(params){
   return function(dispatch){
     BumpApi.createBump(params)
       .then((bump) => {
-        console.log("created new bump")
         dispatch(saveBump(bump))
       })
   }
@@ -21,7 +20,6 @@ export function fetchBumps(){
   return function(dispatch){
   dispatch(fetchingBumps())
   BumpApi.fetchBumps().then(bumps => {
-      console.log("in fetchBumps", bumps)
       dispatch(fetchedBumps(bumps))
     })
   }
@@ -51,7 +49,6 @@ export function deleteBump(params){
   return function(dispatch){
     BumpApi.deleteBump(params)
       .then((bumps) => {
-        console.log("In DeleteBump", bumps)
         dispatch(fetchedBumps(bumps))
       })
   }

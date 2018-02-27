@@ -24,7 +24,7 @@ class SockGalleryCard extends Component{
     }
     return(
       <div className="sock-gallery-card">
-        <img onClick={this.handleClick} src={this.props.sock.image} style={{border: `${border}`, boxSizing: 'border-box'}}/>
+        <img alt="" onClick={this.handleClick} src={this.props.sock.image} style={{border: `${border}`, boxSizing: 'border-box'}}/>
       </div>
     )
   }

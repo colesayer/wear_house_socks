@@ -24,7 +24,6 @@ class SideBarContainer extends Component{
   }
 
   render(){
-    console.log(this.state)
     let sideBarContent = ""
     if(this.state.galleryIsOpen){
       sideBarContent =

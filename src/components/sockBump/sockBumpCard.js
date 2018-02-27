@@ -7,7 +7,6 @@ class SockBumpCard extends Component{
   }
 
   handleClick = (e) => {
-    console.log("clicked", e)
     this.props.selectBump(this.props.bump)
   }
 
@@ -26,7 +25,7 @@ class SockBumpCard extends Component{
     return(
       <li className="sock-bump-card">
         <button onClick={this.handleDelete}>X</button>
-        <img src={this.props.bump.bump_url} style={{"border": `${border}`}} onClick={this.handleClick}/>
+        <img alt="" src={this.props.bump.bump_url} style={{"border": `${border}`}} onClick={this.handleClick}/>
         <p>{this.props.bump.name}</p>
       </li>
     )

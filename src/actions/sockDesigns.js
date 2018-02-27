@@ -4,7 +4,6 @@ export function createDesign(params){
   return function(dispatch){
     DesignApi.createDesign(params)
       .then((design) => {
-        console.log("created new design")
         dispatch(saveDesign(design))
       })
   }
@@ -21,7 +20,6 @@ export function fetchDesigns(){
   return function(dispatch){
   dispatch(fetchingDesigns())
   DesignApi.fetchDesigns().then(designs => {
-      console.log("in fetchDesigns", designs)
       dispatch(fetchedDesigns(designs))
     })
   }
@@ -57,7 +55,6 @@ export function deleteDesign(params){
   return function(dispatch){
     DesignApi.deleteDesign(params)
       .then((designs) => {
-        console.log("In DeleteDesign", designs)
         dispatch(fetchedDesigns(designs))
       })
   }

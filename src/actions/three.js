@@ -10,7 +10,6 @@ export function createSock(params){
   return function(dispatch){
     ThreeApi.createSock(params)
       .then((sock) => {
-        console.log("created new sock")
         dispatch(saveSock(sock))
       })
   }
