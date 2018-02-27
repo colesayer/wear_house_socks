@@ -50,6 +50,10 @@ class ThreeView extends Component{
     this.controls.noPan = false;
     this.controls.staticMoving = false;
     this.controls.dynamicDampingFactor = 0.1;
+    this.controls.minDistance = 2;
+    this.controls.maxDistance = 12;
+
+    console.log(this.controls)
 
     //SCENE
     this.scene = new THREE.Scene();
