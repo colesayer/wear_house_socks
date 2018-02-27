@@ -1,7 +1,9 @@
+const baseUrl = 'https://mylifesocks-backend.herokuapp.com'
+
 export default class ThreeApi{
-  
+
   static createSock(params){
-  return fetch(`http://localhost:3000/socks`, {method: "post", headers: {
+  return fetch(`${baseUrl}/socks`, {method: "post", headers: {
     "Content-Type":"application/json",
     "Accept":"application/json"
   },

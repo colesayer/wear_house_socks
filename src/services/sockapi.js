@@ -1,12 +1,14 @@
+const baseUrl = 'https://mylifesocks-backend.herokuapp.com'
+
 export default class DesignApi{
 
   static fetchSocks(){
-    return fetch('http://localhost:3000/socks')
+    return fetch(`${baseUrl}/socks`)
     .then((res) => res.json())
   }
 
   // static deleteDesign(params){
-  //   return fetch(`http://localhost:3000/designs/${params.id}`, {method: "DELETE", headers: {
+  //   return fetch(`${baseUrl}/designs/${params.id}`, {method: "DELETE", headers: {
   //     "Content-Type":"application/json",
   //     "Accept":"application/json"
   //   },
@@ -15,7 +17,7 @@ export default class DesignApi{
   // }
 
   static fetchSock(params){
-    return fetch(`http://localhost:3000/socks/${params.id}`)
+    return fetch(`${baseUrl}/socks/${params.id}`)
     .then((res) => res.json())
   }
 
