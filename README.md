@@ -1,7 +1,5 @@
 ## Welcome To My Life Socks.
 
-<a href="https://mylifesocks.herokuapp.com/">https://mylifesocks.herokuapp.com/</a>
-
 This is the frontend for My Life Socks, currently a work in progress!
 
 ![Socks Gif](https://media.giphy.com/media/1Ajjem96UdnarPVl8T/giphy.gif)
