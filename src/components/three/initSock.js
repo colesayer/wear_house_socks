@@ -34,7 +34,8 @@ export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, hee
       child.material.map = sockBodyTexture;
       child.material.map.needsUpdate = true;
       child.material.bumpMap = sockBodyBumpMap;
-      child.material.bumpScale = 0.12
+      child.material.bumpScale = 0.12;
+      child.material.side = THREE.DoubleSide;
     }
   })
   object.position.set(3.75, -5, 1.6)
@@ -90,7 +91,8 @@ sockHeelLoader.load(`./models/${sockConstruction}/heel.obj`, (object) => {
     if(child instanceof THREE.Mesh){
       child.material = sockHeelMaterial;
       child.material.bumpMap = sockHeelBumpMap;
-      child.material.bumpScale = 0.12
+      child.material.bumpScale = 0.12;
+      child.material.side = THREE.DoubleSide;
     }
   })
   object.position.set(3.75, -5, 1.6)
@@ -119,7 +121,8 @@ sockWeltLoader.load(`./models/${sockConstruction}/welt.obj`, (object) => {
     if(child instanceof THREE.Mesh){
       child.material = sockWeltMaterial;
       child.material.bumpMap = sockWeltBumpMap;
-      child.material.bumpScale = 0.12
+      child.material.bumpScale = 0.12;
+      child.material.side = THREE.DoubleSide;
     }
   })
   object.position.set(3.75, -5, 1.6)
