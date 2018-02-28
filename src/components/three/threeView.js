@@ -58,7 +58,7 @@ class ThreeView extends Component{
     this.scene = new THREE.Scene();
 
     //KEYLIGHT
-    this.keyLight = new THREE.AmbientLight(0xffffff, 0.5)
+    this.keyLight = new THREE.AmbientLight(0xffffff, .5)
     this.scene.add(this.keyLight);
 
     //POINTLIGHT
@@ -67,7 +67,16 @@ class ThreeView extends Component{
     this.scene.add(this.pointLight)
 
     var pointLightHelper = new THREE.PointLightHelper( this.pointLight, 1 )
+    pointLightHelper.color = "0x00000"
     this.scene.add(pointLightHelper)
+
+    //FILL LIGHT
+    // this.fillLight = new THREE.PointLight( 0xffffff, 1 )
+    // this.fillLight.position.set( 0, 7, -20)
+    // this.scene.add(this.fillLight)
+    //
+    // var fillLightHelper = new THREE.PointLightHelper( this.fillLight, 1 )
+    // this.scene.add(fillLightHelper)
 
     //GROUP
     this.sockGroup = new THREE.Group()

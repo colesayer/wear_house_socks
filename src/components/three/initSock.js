@@ -63,7 +63,8 @@ sockToeLoader.load(`./models/${sockConstruction}/toe.obj`, (object) => {
     if(child instanceof THREE.Mesh){
       child.material = sockToeMaterial;
       child.material.bumpMap = sockToeBumpMap;
-      child.material.bumpScale = 0.12
+      child.material.bumpScale = 0.12;
+      child.material.side = THREE.DoubleSide;
     }
   })
   object.position.set(3.75, -5, 1.6)
