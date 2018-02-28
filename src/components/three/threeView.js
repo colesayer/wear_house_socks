@@ -96,7 +96,6 @@ class ThreeView extends Component{
       this.resetCamera()
     }
     if(this.sockGroup.children[3]){
-      console.log(this.sockGroup.children)
       if(this.props.toeColor !== nextProps.toeColor){
         var toe = this.sockGroup.children.filter((item) => {
           return item.name === "toe"
@@ -106,12 +105,12 @@ class ThreeView extends Component{
         var heel = this.sockGroup.children.filter((item) => {
           return item.name === "heel"
         })
-        heel[0].children[0].material.color.set(nextProps.toeColor)
+        heel[0].children[0].material.color.set(nextProps.heelColor)
       } else if(this.props.weltColor !== nextProps.weltColor){
         var welt = this.sockGroup.children.filter((item) => {
           return item.name === "welt"
         })
-        welt[0].children[0].material.color.set(nextProps.toeColor)
+        welt[0].children[0].material.color.set(nextProps.weltColor)
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
         let sockBodyImageURL = nextProps.selectedDesign.design_url
         // let sockBody = this.sockGroup.children[3].children[0]
@@ -182,9 +181,10 @@ class ThreeView extends Component{
   }
 
   handleSave = (name) => {
-    const image = this.renderer.domElement.toDataURL()
-    const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
-    this.props.createSock(params)
+    // const image = this.renderer.domElement.toDataURL()
+    console.log(this.props)
+    // const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
+    // this.props.createSock(params)
   }
 
   render(){
