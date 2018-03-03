@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
 
 const customStyles = {
   content : {
@@ -46,6 +47,26 @@ class threeControls extends Component{
   }
 
   render(){
+    let modalContent = ""
+    console.log(this.props)
+    if(!this.props.selectedDesign.id || !this.props.selectedBump.id){
+      modalContent =
+      <div>
+      <h2 ref={subtitle => this.subtitle = subtitle}>You must select a design and bump.</h2>
+      <button onClick={this.closeModal}>close</button>
+      </div>
+    } else {
+      modalContent =
+      <div>
+      <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+      <button onClick={this.closeModal}>close</button>
+      <div>Name Your Design:</div>
+      <form>
+        <input onChange={this.handleInput}/>
+        <button onClick={this.handleSave}>Save</button>
+      </form>
+      </div>
+    }
     return(
       <div className="three-controls">
         <button onClick={this.openModal}>save</button>
@@ -56,18 +77,20 @@ class threeControls extends Component{
           style={customStyles}
           contentLabel="Example Modal"
         >
+        {modalContent}
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>Name Your Design:</div>
-          <form>
-            <input onChange={this.handleInput}/>
-            <button onClick={this.handleSave}>Save</button>
-          </form>
         </Modal>
       </div>
     )
   }
 }
 
-export default threeControls
+const mapStateToProps = (state) => {
+  return({
+    selectedDesign: state.selectedDesign,
+    selectedBump: state.selectedBump
+  })
+}
+
+
+export default connect(mapStateToProps)(threeControls)

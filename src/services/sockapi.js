@@ -7,14 +7,14 @@ export default class DesignApi{
     .then((res) => res.json())
   }
 
-  // static deleteDesign(params){
-  //   return fetch(`${baseUrl}/designs/${params.id}`, {method: "DELETE", headers: {
-  //     "Content-Type":"application/json",
-  //     "Accept":"application/json"
-  //   },
-  // body: JSON.stringify(params)
-  // }).then((res) => res.json())
-  // }
+  static deleteSock(params){
+    return fetch(`${baseUrl}/socks/${params.id}`, {method: "DELETE", headers: {
+      "Content-Type":"application/json",
+      "Accept":"application/json"
+    },
+  body: JSON.stringify(params)
+  }).then((res) => res.json())
+  }
 
   static fetchSock(params){
     return fetch(`${baseUrl}/socks/${params.id}`)

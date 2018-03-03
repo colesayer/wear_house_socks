@@ -190,10 +190,9 @@ class ThreeView extends Component{
   }
 
   handleSave = (name) => {
-    // const image = this.renderer.domElement.toDataURL()
-    console.log(this.props)
-    // const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
-    // this.props.createSock(params)
+    const image = this.renderer.domElement.toDataURL()
+    const params = {name: name, construction: this.props.sockConstruction, toe_color: this.props.toeColor, heel_color: this.props.heelColor, welt_color: this.props.weltColor, design_id: this.props.selectedDesign.id, bump_id: this.props.selectedBump.id, image: image}
+    this.props.createSock(params)
   }
 
   render(){

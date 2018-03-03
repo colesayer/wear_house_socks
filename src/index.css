@@ -124,8 +124,20 @@ body {
   justify-content: center;
 }
 
+.sock-gallery-card{
+  position: relative;
+  display: block;
+  float: left;
+}
+
 .sock-gallery-card img{
   height: 250px;
+}
+
+.sock-gallery-card button{
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 

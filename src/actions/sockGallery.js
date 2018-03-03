@@ -45,3 +45,22 @@ function selectedSock(sock){
     payload: sock
   }
 }
+
+export function deleteSock(params){
+  return function(dispatch){
+    SockApi.deleteSock(params)
+      .then((socks) => {
+        dispatch(fetchedSocks(socks))
+      })
+  }
+}
+
+
+// export function deleteBump(params){
+//   return function(dispatch){
+//     BumpApi.deleteBump(params)
+//       .then((bumps) => {
+//         dispatch(fetchedBumps(bumps))
+//       })
+//   }
+// }
