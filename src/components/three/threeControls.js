@@ -48,7 +48,6 @@ class threeControls extends Component{
 
   render(){
     let modalContent = ""
-    console.log(this.props)
     if(!this.props.selectedDesign.id || !this.props.selectedBump.id){
       modalContent =
       <div>

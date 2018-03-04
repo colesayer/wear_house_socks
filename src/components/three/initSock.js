@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 OBJLoader(THREE);
 
-export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, heelColor, weltColor){
+export function initSock(THREEloader, sockGroup, sockConstruction, toeColor, heelColor, weltColor, sockDesign, sockBump){
   //SOCK BODY
 
   //texture

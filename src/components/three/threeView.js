@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackballControls from '../../ref/trackball.js'
 import { initSock } from './initSock.js'
+import { loadSavedSock } from './loadSavedSock.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearParams, createSock } from '../../actions/three.js'
@@ -94,13 +95,14 @@ class ThreeView extends Component{
 
   componentWillReceiveProps(nextProps){
     if(this.props.sockConstruction !== nextProps.sockConstruction){
+      // console.log("CHANGED CONSTRUCTION", this.props)
       this.scene.remove(this.sockGroup)
       this.props.clearParams()
       this.sockGroup = new THREE.Group()
       this.toeColor = "#ECEADE"
       this.heelColor = "#ECEADE"
       this.weltColor = "#ECEADE"
-      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.toeColor, this.heelColor, this.weltColor)
+      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor, this.props.selectedDesign, this.props.selectedBump)
       this.scene.add(this.sockGroup)
       this.resetCamera()
     }
@@ -121,6 +123,7 @@ class ThreeView extends Component{
         })
         welt[0].children[0].material.color.set(nextProps.weltColor)
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
+        console.log("Hitting Design Change")
         let sockBodyImageURL = nextProps.selectedDesign.design_url
         // let sockBody = this.sockGroup.children[3].children[0]
         let sock = this.sockGroup.children.filter((item) => {
@@ -214,6 +217,7 @@ const mapStateToProps = (state) => {
     weltColor: state.sockWelt,
     selectedDesign: state.selectedDesign,
     selectedBump: state.selectedBump,
+    loadingSavedSock: state.loadingSavedSock,
   }
 }
 

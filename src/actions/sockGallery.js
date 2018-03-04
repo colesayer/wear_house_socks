@@ -2,6 +2,7 @@ import SockApi from '../services/sockapi.js'
 import {chooseToeColor, chooseHeelColor, chooseWeltColor} from './sockColors.js'
 import {selectDesign} from './sockDesigns.js'
 import {selectBump} from './sockBumps.js'
+import {chooseSock} from './sockPicker.js'
 
 export function fetchSocks(){
   return function(dispatch){
@@ -30,11 +31,13 @@ export function selectSock(sock){
     dispatch(selectedSock(sock))
     dispatch(fetchingSocks())
     SockApi.fetchSock(sock).then(sock => {
+      console.log("SOCK", sock)
       dispatch(chooseToeColor(sock.toe_color))
       dispatch(chooseHeelColor(sock.heel_color))
       dispatch(chooseWeltColor(sock.welt_color))
       dispatch(selectDesign(sock.design))
       dispatch(selectBump(sock.bump))
+      dispatch(loadingSock())
     })
   }
 }
@@ -55,12 +58,8 @@ export function deleteSock(params){
   }
 }
 
-
-// export function deleteBump(params){
-//   return function(dispatch){
-//     BumpApi.deleteBump(params)
-//       .then((bumps) => {
-//         dispatch(fetchedBumps(bumps))
-//       })
-//   }
-// }
+function loadingSock(){
+  return{
+    type: 'LOADING_SOCK'
+  }
+}
