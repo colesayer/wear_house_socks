@@ -15,20 +15,34 @@ const customStyles = {
 
 class threeControls extends Component{
   state = {
-    modalIsOpen: false,
+    saveModalIsOpen: false,
+    renderModalIsOpen: false,
     name: "",
   }
 
-  openModal = () => {
+  openSaveModal = () => {
     this.props.resetCamera()
     this.setState({
-      modalIsOpen: true
+      saveModalIsOpen: true
     })
   }
 
-  closeModal = () => {
+  closeSaveModal = () => {
     this.setState({
-      modalIsOpen: false
+      saveModalIsOpen: false
+    })
+  }
+
+  openRenderModal = () => {
+    this.props.onRender()
+    this.setState({
+      renderModalIsOpen: true
+    })
+  }
+
+  closeRenderModal = () => {
+    this.setState({
+      renderModalIsOpen: false
     })
   }
 
@@ -39,26 +53,39 @@ class threeControls extends Component{
   }
 
   handleSave = (e) => {
-      e.preventDefault()
-      this.props.onSave(this.state.name)
-      this.setState({
-        modalIsOpen: false
-      })
+    e.preventDefault()
+    this.props.onSave(this.state.name)
+    this.setState({
+      modalIsOpen: false
+    })
+  }
+
+  handleDownload = () => {
+    var link = document.createElement('a');
+    link.href = this.props.rendering
+    link.download = 'Rendering.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link)
+  }
+
+  handleCamera = () => {
+    this.props.resetCamera()
   }
 
   render(){
-    let modalContent = ""
+    let saveModalContent = ""
     if(!this.props.selectedDesign.id || !this.props.selectedBump.id){
-      modalContent =
+      saveModalContent =
       <div>
       <h2 ref={subtitle => this.subtitle = subtitle}>You must select a design and bump.</h2>
-      <button onClick={this.closeModal}>close</button>
+      <button onClick={this.closeSaveModal}>close</button>
       </div>
     } else {
-      modalContent =
+      saveModalContent =
       <div>
       <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-      <button onClick={this.closeModal}>close</button>
+      <button onClick={this.closeSaveModal}>close</button>
       <div>Name Your Design:</div>
       <form>
         <input onChange={this.handleInput}/>
@@ -68,16 +95,29 @@ class threeControls extends Component{
     }
     return(
       <div className="three-controls">
-        <button onClick={this.openModal}>save</button>
+        <button onClick={this.openSaveModal}>save</button>
+        <button onClick={this.handleCamera}>reset camera</button>
+        <button onClick={this.openRenderModal}>render</button>
         <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
+          isOpen={this.state.saveModalIsOpen}
+          onRequestClose={this.closeSaveModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
-        {modalContent}
+        {saveModalContent}
+        </Modal>
+        <Modal
+          isOpen={this.state.renderModalIsOpen}
+          onRequestClose={this.closeRenderModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
 
+        <img src={this.props.rendering} />
+        <div className="modal-buttons">
+          <button onClick={this.closeRenderModal}>close</button>
+          <button onClick={this.handleDownload}>download</button>
+        </div>
         </Modal>
       </div>
     )

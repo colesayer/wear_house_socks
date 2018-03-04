@@ -5,7 +5,7 @@ import {loadModel} from './loadModel.js'
 import { loadBodyDesign } from './loadTextures.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearParams, createSock } from '../../actions/three.js'
+import { clearParams, createSock, storeRendering } from '../../actions/three.js'
 import ThreeControls from './threeControls.js'
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
@@ -120,7 +120,7 @@ class ThreeView extends Component{
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
         console.log("Hitting Design Change")
         let sockBodyImageURL = nextProps.selectedDesign.design_url
-        
+
         let sock = this.sockGroup.children.filter((item) => {
           return item.name === "body"
         })
@@ -193,10 +193,15 @@ class ThreeView extends Component{
     this.props.createSock(params)
   }
 
+  handleRender = () => {
+    const image = this.renderer.domElement.toDataURL()
+    this.props.storeRendering(image)
+  }
+
   render(){
     return(
       <div>
-        <ThreeControls onSave={this.handleSave} resetCamera={this.resetCamera} {...this.props}/>
+        <ThreeControls onSave={this.handleSave} resetCamera={this.resetCamera} onRender={this.handleRender} {...this.props}/>
         <div ref={(canvas) => {this.canvas = canvas}}/>
       </div>
     )
@@ -213,13 +218,15 @@ const mapStateToProps = (state) => {
     selectedDesign: state.selectedDesign,
     selectedBump: state.selectedBump,
     loadingSavedSock: state.loadingSavedSock,
+    rendering: state.rendering
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     clearParams: clearParams,
-    createSock: createSock
+    createSock: createSock,
+    storeRendering: storeRendering,
   }, dispatch)
 }
 

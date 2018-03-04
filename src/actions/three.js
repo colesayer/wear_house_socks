@@ -21,3 +21,10 @@ export function saveSock(sock){
     payload: sock
   }
 }
+
+export function storeRendering(rendering){
+  return {
+    type: 'STORE_RENDERING',
+    payload: rendering
+  }
+}
