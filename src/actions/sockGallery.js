@@ -37,6 +37,7 @@ export function selectSock(sock){
       dispatch(chooseWeltColor(sock.welt_color))
       dispatch(selectDesign(sock.design))
       dispatch(selectBump(sock.bump))
+      dispatch(chooseSock(sock.construction))
       dispatch(loadingSock())
     })
   }
