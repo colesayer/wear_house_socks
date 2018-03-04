@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TrackballControls from '../../ref/trackball.js'
 import { initSock } from './initSock.js'
-import { loadSavedSock } from './loadSavedSock.js'
+import {loadModel} from './loadModel.js'
+import { loadBodyDesign } from './loadTextures.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearParams, createSock } from '../../actions/three.js'
+import { clearParams, createSock, storeRendering } from '../../actions/three.js'
 import ThreeControls from './threeControls.js'
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
@@ -95,18 +96,12 @@ class ThreeView extends Component{
 
   componentWillReceiveProps(nextProps){
     if(this.props.sockConstruction !== nextProps.sockConstruction){
-      // console.log("CHANGED CONSTRUCTION", this.props)
       this.scene.remove(this.sockGroup)
-      this.props.clearParams()
       this.sockGroup = new THREE.Group()
-      this.toeColor = "#ECEADE"
-      this.heelColor = "#ECEADE"
-      this.weltColor = "#ECEADE"
-      initSock(this.THREE, this.sockGroup, nextProps.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor, this.props.selectedDesign, this.props.selectedBump)
+      loadModel(this.THREE, nextProps.sockConstruction, this.sockGroup, this.props.selectedDesign, this.props.selectedBump, this.props.toeColor, this.props.heelColor, this.props.weltColor)
       this.scene.add(this.sockGroup)
       this.resetCamera()
-    }
-    if(this.sockGroup.children[3]){
+    } else if(this.sockGroup.children[3]){
       if(this.props.toeColor !== nextProps.toeColor){
         var toe = this.sockGroup.children.filter((item) => {
           return item.name === "toe"
@@ -125,7 +120,7 @@ class ThreeView extends Component{
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
         console.log("Hitting Design Change")
         let sockBodyImageURL = nextProps.selectedDesign.design_url
-        // let sockBody = this.sockGroup.children[3].children[0]
+
         let sock = this.sockGroup.children.filter((item) => {
           return item.name === "body"
         })
@@ -198,10 +193,15 @@ class ThreeView extends Component{
     this.props.createSock(params)
   }
 
+  handleRender = () => {
+    const image = this.renderer.domElement.toDataURL()
+    this.props.storeRendering(image)
+  }
+
   render(){
     return(
       <div>
-        <ThreeControls onSave={this.handleSave} resetCamera={this.resetCamera} {...this.props}/>
+        <ThreeControls onSave={this.handleSave} resetCamera={this.resetCamera} onRender={this.handleRender} {...this.props}/>
         <div ref={(canvas) => {this.canvas = canvas}}/>
       </div>
     )
@@ -218,13 +218,15 @@ const mapStateToProps = (state) => {
     selectedDesign: state.selectedDesign,
     selectedBump: state.selectedBump,
     loadingSavedSock: state.loadingSavedSock,
+    rendering: state.rendering
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     clearParams: clearParams,
-    createSock: createSock
+    createSock: createSock,
+    storeRendering: storeRendering,
   }, dispatch)
 }
 

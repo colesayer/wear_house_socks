@@ -13,6 +13,7 @@ export default function rootReducer(
     savedSocks: [],
     selectedSock: {},
     loadingSavedSock: false,
+    rendering: "",
   },
   action
 ){
@@ -55,6 +56,8 @@ export default function rootReducer(
       return {...state, selectedSock: action.payload}
     case 'LOADING_SOCK':
       return {...state, loadingSavedSock: true}
+    case 'STORE_RENDERING':
+      return {...state, rendering: action.payload}
     default:
     return state
   }

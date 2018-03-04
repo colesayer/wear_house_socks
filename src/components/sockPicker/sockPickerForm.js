@@ -19,7 +19,7 @@ class SockPickerForm extends Component{
       <div className="sock-picker-form">
         <form>
           <label>Select Construction: {" "}</label>
-          <select value={this.state.construction} onChange={this.handleConstruction}>
+          <select value={this.props.sockConstruction} onChange={this.handleConstruction}>
             <option value="Low-Cut">Low-Cut</option>
             <option value="Quarter-Crew">Quarter-Crew</option>
             <option value="Half-Crew">Half-Crew</option>
