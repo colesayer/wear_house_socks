@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TrackballControls from '../../ref/trackball.js'
 import { initSock } from './initSock.js'
 import {loadModel} from './loadModel.js'
-import { loadBodyDesign } from './loadTextures.js'
+import { loadBodyDesign, loadBodyBump, loadToe, loadHeel, loadWelt } from './loadTextures.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearParams, createSock, storeRendering } from '../../actions/three.js'
@@ -41,7 +41,7 @@ class ThreeView extends Component{
     //CAMERA
     this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
     this.camera.position.y = 0;
-		this.camera.position.z = 7;
+		this.camera.position.z = 5;
 
     //CONTROLS
     this.controls = new TrackballControls(this.camera, this.canvas);
@@ -83,7 +83,8 @@ class ThreeView extends Component{
     //GROUP
     this.sockGroup = new THREE.Group()
 
-    initSock(this.THREE, this.sockGroup, this.props.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor)
+    // initSock(this.THREE, this.sockGroup, this.props.sockConstruction, this.props.toeColor, this.props.heelColor, this.props.weltColor)
+    loadModel(this.THREE, this.props.sockConstruction, this.sockGroup, this.props.selectedDesign, this.props.selectedBump, this.props.toeColor, this.props.heelColor, this.props.weltColor)
 
     this.scene.add(this.sockGroup)
 
@@ -118,47 +119,9 @@ class ThreeView extends Component{
         })
         welt[0].children[0].material.color.set(nextProps.weltColor)
       } else if(this.props.selectedDesign !== nextProps.selectedDesign){
-        console.log("Hitting Design Change")
-        let sockBodyImageURL = nextProps.selectedDesign.design_url
-
-        let sock = this.sockGroup.children.filter((item) => {
-          return item.name === "body"
-        })
-
-        let sockBody = sock[0].children[0]
-
-
-        let sockBodyTextureL = new THREE.TextureLoader()
-
-        sockBodyTextureL.load(sockBodyImageURL, function(texture){
-          texture.offset.y -= 1;
-          texture.offset.x += .6;
-          texture.wrapS = THREE.RepeatWrapping;
-          texture.repeat.set(2, 2)
-
-          sockBody.material.map = texture
-          sockBody.material.map.needsUpdate = true;
-          sockBody.material.needsUpdate = true;
-        })
-
+        loadBodyDesign(nextProps.selectedDesign, this.sockGroup, this.props.sockConstruction)
       } else if(this.props.selectedBump !== nextProps.selectedBump){
-        let sockBodyBumpUrl = nextProps.selectedBump.bump_url
-        let sock = this.sockGroup.children.filter((item) => {
-          return item.name === "body"
-        })
-
-        let sockBody = sock[0].children[0]
-
-        let sockBodyBumpTextureLoader = new THREE.TextureLoader()
-        const sockBodyBumpMap = sockBodyBumpTextureLoader.load(sockBodyBumpUrl, function(bump){
-          sockBodyBumpMap.wrapT = THREE.RepeatWrapping;
-          sockBodyBumpMap.wrapS = THREE.RepeatWrapping;
-
-          sockBody.material.bumpMap = sockBodyBumpMap;
-          sockBody.material.bumpScale = 0.12
-          sockBody.material.bumpMap.needsUpdate = true;
-          sockBody.material.needsUpdate = true;
-        })
+        loadBodyBump(nextProps.selectedBump, this.sockGroup)
       }
     }
   }
