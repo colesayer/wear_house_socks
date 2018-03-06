@@ -28,13 +28,13 @@ export function loadModel(THREEloader, sockConstruction, sockGroup, selectedDesi
             sockGroup.add(welt)
 
             if(selectedDesign.id){
-              console.log("DESIGN WAS INCLUDED")
-              loadBodyDesign(selectedDesign, sockGroup)
+              console.log("DESIGN WAS INCLUDED", sockConstruction)
+              loadBodyDesign(selectedDesign, sockGroup, sockConstruction)
             } else {
-              console.log("DEFAULT DESIGN")
+              console.log("DEFAULT DESIGN", sockConstruction)
               let defaultDesign = {}
               defaultDesign["design_url"] = "http://res.cloudinary.com/mylifesocks/image/upload/v1514072588/cream_ma9gqb.png"
-              loadBodyDesign(defaultDesign, sockGroup)
+              loadBodyDesign(defaultDesign, sockGroup, sockConstruction)
             }
 
             if(selectedBump.id){

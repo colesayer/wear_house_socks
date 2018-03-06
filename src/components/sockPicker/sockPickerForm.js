@@ -20,10 +20,9 @@ class SockPickerForm extends Component{
         <form>
           <label>Select Construction: {" "}</label>
           <select value={this.props.sockConstruction} onChange={this.handleConstruction}>
-            <option value="Low-Cut">Low-Cut</option>
+
             <option value="Quarter-Crew">Quarter-Crew</option>
-            <option value="Half-Crew">Half-Crew</option>
-            <option value="Three-Quarter">Three-Quarter</option>
+
             <option value="Crew">Crew</option>
             <option value="Extended-Crew">Extended-Crew</option>
           </select>
@@ -46,3 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SockPickerForm)
+
+// <option value="Low-Cut">Low-Cut</option>
+// <option value="Half-Crew">Half-Crew</option>
+// <option value="Three-Quarter">Three-Quarter</option>

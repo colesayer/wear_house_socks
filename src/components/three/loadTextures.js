@@ -1,22 +1,73 @@
 import * as THREE from 'three';
 
-export function loadBodyDesign(design, sockGroup){
+export function loadBodyDesign(design, sockGroup, sockConstruction){
   let sockBodyImageURL = design.design_url
+
   let sockBodyArray = sockGroup.children.filter((item) => {
     return item.name === "body"
   })
 
+  var yOffset
+  var xOffset
+  var xRepeat
+  var yRepeat
+  var repeatPattern = THREE.ClampToEdgeWrapping
+
+  switch (sockConstruction) {
+    case "Extended-Crew":
+      console.log("extended")
+      yOffset = 1
+      xOffset = 0.24
+      xRepeat = 2
+      yRepeat = 2
+      break;
+    case "Crew":
+      console.log('regs')
+      yOffset = .8
+      xOffset = .25
+      xRepeat = 2
+      yRepeat = 2
+      break;
+    case "Quarter-Crew":
+      console.log('quarter')
+      yOffset = 1.1
+      xOffset = -.21
+      xRepeat = 2.2
+      yRepeat = 2.2
+      break;
+    default:
+      console.log("sock construction messed up")
+      yOffset = .9
+      xOffset = 0.27
+      xRepeat = 2
+      yRepeat = 2
+  }
+
+
+
+
+
   let sockBody = sockBodyArray[0].children[0]
+
+  if(design.name){
+    var design_name_arr = design.name.split('.')
+    if(design_name_arr.length > 1){
+      if(design_name_arr[design_name_arr.length - 1] === "repeat"){
+        repeatPattern = THREE.RepeatWrapping
+      }
+    }
+  }
+
 
 
   let sockBodyTextureLoader = new THREE.TextureLoader()
 
   sockBodyTextureLoader.load(sockBodyImageURL, function(texture){
-    texture.offset.y -= 1
-    texture.offset.x += .6
+    texture.offset.y -= yOffset
+    texture.offset.x += xOffset
     texture.wrapS = THREE.RepeatWrapping
-    texture.repeat.set(2, 2)
-
+    texture.repeat.set(xRepeat, yRepeat) //(x, y)
+    texture.wrapT = repeatPattern
     sockBody.material.map = texture
     sockBody.material.map.needsUpdate = true
     sockBody.material.needsUpdate = true

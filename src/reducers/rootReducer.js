@@ -1,6 +1,6 @@
 export default function rootReducer(
   state = {
-    sockConstruction: "Crew",
+    sockConstruction: "Extended-Crew",
     sockHeel: "#eceade",
     sockToe: "#eceade",
     sockWelt: "#eceade",
