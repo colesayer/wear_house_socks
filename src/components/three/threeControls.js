@@ -56,7 +56,7 @@ class threeControls extends Component{
     e.preventDefault()
     this.props.onSave(this.state.name)
     this.setState({
-      modalIsOpen: false
+      saveModalIsOpen: false
     })
   }
 
