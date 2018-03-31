@@ -2,7 +2,7 @@
 
 This is the frontend for Wear House Socks, currently a work in progress!
 
-<a href="http://wearhousesocks.herokuapp.com">http://wearhousesocks.herokuapp.com</a>
+<a href="http://wearhousesocks.herokuapp.com">http://wearhousesocks.herokuapp.com</a> (if the link seems unresponsive, give it time! That is the heroku server spinning up.)
 
 ![Socks Gif](https://media.giphy.com/media/1Ajjem96UdnarPVl8T/giphy.gif)
 
