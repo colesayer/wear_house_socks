@@ -1,13 +1,15 @@
-## Welcome To My Life Socks.
+## Welcome To Wear House Socks.
 
-This is the frontend for My Life Socks, currently a work in progress!
+This is the frontend for Wear House Socks, currently a work in progress!
+
+<a href="http://wearhousesocks.herokuapp.com">http://wearhousesocks.herokuapp.com</a>
 
 ![Socks Gif](https://media.giphy.com/media/1Ajjem96UdnarPVl8T/giphy.gif)
 
 The repository for the backend can be found here: <a href="https://github.com/colesayer/sock_dev_backend">https://github.com/colesayer/sock_dev_backend</a>.
 
 ### Description
-My Life Socks is a product customization and visualization tool utilizing the power of WebGL. It is being built for my friend's sock company in North Carolina. Eventually, it will be a tool on their product's web site.
+Wear House Socks is a product customization and visualization tool utilizing the power of WebGL. It is being built for my friend's sock company in North Carolina. Eventually, it will be a tool on their product's web site.
 
 In its current state, a user can choose a sock construction (crew and extended crew for now), pick the heel, toe, and top band colors, choose a pre-made design or upload a design of their own, and choose the type of knit. The app updates the 3d model in real time, giving the user a photo-realistic 3d representation of the sock they're creating. Many new features will be added soon.
 
